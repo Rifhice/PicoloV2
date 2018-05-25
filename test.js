@@ -3,19 +3,16 @@ const router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 
 router.get('/', function (req, res) {
-    res.send("Hello world !")
-    // Connect to the db
-    MongoClient.connect("mongodb://heroku_hkrj1ct1:e26m5cncqlrrthjdnf9muntac5@ds211289.mlab.com:11289/heroku_hkrj1ct1", function (err, db) {
+    MongoClient.connect('mongodb://heroku_hkrj1ct1:e26m5cncqlrrthjdnf9muntac5@ds211289.mlab.com:11289/heroku_hkrj1ct1', function (err, client) {
+        if (err) throw err;
 
-        db.collection('test', function (err, collection) {
+        var db = client.db('mytestingdb');
 
-            collection.find().toArray(function (err, items) {
-                if (err) throw err;
-                res.send(items);
-            });
-
+        db.collection('test').findOne({}, function (findErr, result) {
+            if (findErr) throw findErr;
+            res.send(result.name);
+            client.close();
         });
-
     });
 })
 
