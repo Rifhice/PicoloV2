@@ -1,11 +1,10 @@
 var mongoose = require("../dbConnection.js");
 
-var Schema = mongoose.Schema
 var mySchema = new mongoose.Schema({
-    id: Schema.Types.ObjectId,
-    greetings: 'string'
+    greetings: 'string',
+    Whallah: 'string'
+}, {
+    strict: false
 });
 
-module.exports = mongoose.model('test', {
-    mySchema
-}, 'test');;
+module.exports = mongoose.model('Test', mySchema, 'test');
