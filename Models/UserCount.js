@@ -9,4 +9,4 @@ var mySchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("UserCount", mySchema, "UserCount");
+module.exports = mongoose.model("UserCount", mySchema, "User_Count");
